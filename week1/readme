@@ -1,1 +1,4 @@
-
+model.ipynb is a model which is "Top 5 Similar Sentences Finder" having :
+Input: 1 query sentence
+Output: Top 5 most closest matches from dataset
+Dataset: https://www.kaggle.com/datasets/rmisra/news-category-dataset 
