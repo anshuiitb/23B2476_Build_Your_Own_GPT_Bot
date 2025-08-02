@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chat with Gemini</title>
+</head>
+<body>
+  <h1>Chat with Gemini</h1>
+
+  <textarea id="userInput" rows="4" cols="50" placeholder="Type your message..."></textarea><br>
+  <button onclick="sendMessage()">Send</button>
+
+  <h3>Response:</h3>
+  <p id="response"></p>
+
+
+  <script>
+  async function sendMessage() {
+    const userInput = document.getElementById("userInput").value;
+    const responseBox = document.getElementById("response");
+
+    responseBox.innerText = "Thinking...";
+
+    try {
+      const res = await fetch('/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: userInput })
+      });
+
+      const data = await res.json();
+      console.log("Response from server:", data);  // 👈 log this
+      responseBox.innerText = data.reply || "No reply received.";
+
+    } catch (err) {
+      console.error(err);
+      responseBox.innerText = "Error connecting to server.";
+    }
+  }
+</script>
+</body>
+</html>
